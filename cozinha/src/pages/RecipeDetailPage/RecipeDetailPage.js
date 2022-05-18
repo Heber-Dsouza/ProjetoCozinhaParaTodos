@@ -2,7 +2,9 @@ import React from 'react'
 
 const RecipeDetailPage = () => {
   return (
-    <div>RecipeDetailPage</div>
+    <div>
+      <h1>RecipeDetailPage</h1>
+    </div>
   )
 }
 

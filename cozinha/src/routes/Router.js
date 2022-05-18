@@ -8,9 +8,12 @@ import RecipeDetailPage from "../pages/RecipeDetailPage/RecipeDetailPage"
 import AddRecipesPage from "../pages/AddRecipesPage/AddRecipesPage"
 import ErrorPage from "../pages/ErrorPage/ErrorPage"
 
+import Header from '../components/Header/Header'
+
 const Router = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path='/entrar' element={<LoginPage />} />
         <Route path='/cadastrar' element={<SignupPage />} />
