@@ -2,7 +2,9 @@ import React from 'react'
 
 const RecipeListPage = () => {
   return (
-    <div>RecipeListPage</div>
+    <div>
+      RecipeListPage
+    </div>
   )
 }
 
