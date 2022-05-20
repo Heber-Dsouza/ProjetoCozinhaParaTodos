@@ -2,13 +2,16 @@ import styled from '@emotion/styled';
 
 import { Button } from '@mui/material'
 
-
+export const Welcome = styled.h1`
+  margin: 0;
+  font-size: 25px;
+`
 export const ScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  margin-top: 9vh;
+  margin-top: 7.5vh;
 `
 export const SlideImg = styled.img`
   width: 75vw;

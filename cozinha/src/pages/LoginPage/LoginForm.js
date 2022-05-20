@@ -75,10 +75,9 @@ const LoginForm = () => {
         </FormControl>
 
         <CustomButtonLogin
-          type='submit'
+          type={"submit"}
           variant='contained'
           fullWidth size='large'
-          onClick={onSubmitForm}
         >Login</CustomButtonLogin>
 
       </form>
