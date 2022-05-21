@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
-import axios from "axios"
 
 import {useNavigate} from 'react-router-dom'
 import useForm from "../../hooks/useForm"
 import { goToSignupPage } from '../../routes/coordinator';
-import { BASE_URL } from '../../constants/urls';
 
 import { TextField } from '@mui/material';
 // import { Button } from '@mui/material'
@@ -17,22 +15,12 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { InputContainer, CustomButton, CustomButtonLogin, CustomFormHelperText } from './styled'
 
+import {login} from "../../services/user"
+
 const LoginForm = () => {
 
-  const[error, setError] = useState("")
+  const [error, setError] = useState("")
 
-  const login = () => {
-    axios
-    .post(`${BASE_URL}/user/login`, form)
-    .then((res) => {
-      localStorage.setItem("token", res.data.token)
-      clear()
-      setError("")
-    })
-    .catch((err) => {
-      setError(err.response.data.message)
-    })
-  }
 
   const navigate = useNavigate()
 
@@ -45,7 +33,8 @@ const LoginForm = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    login()
+    login(form, clear, setError)
+    console.log(form);
   }
 
   return (
