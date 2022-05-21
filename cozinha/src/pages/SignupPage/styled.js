@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
 import { Button } from '@mui/material'
+import { FormHelperText } from '@mui/material';
+
 
 export const Welcome = styled.h1`
   margin: 0;
@@ -35,4 +37,7 @@ export const CustomButton = styled(Button)`
 `
 export const CustomButtonLogin = styled(Button)`
   margin-top: 8px;
+`
+export const CustomFormHelperText = styled(FormHelperText)`
+  color: red;
 `
