@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import axios from "axios"
 
 import {useNavigate} from 'react-router-dom'
 import useForm from "../../hooks/useForm"
 import { goToSignupPage } from '../../routes/coordinator';
+import { BASE_URL } from '../../constants/urls';
 
 import { TextField } from '@mui/material';
 // import { Button } from '@mui/material'
@@ -13,9 +15,24 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { InputContainer, CustomButton, CustomButtonLogin } from './styled'
+import { InputContainer, CustomButton, CustomButtonLogin, CustomFormHelperText } from './styled'
 
 const LoginForm = () => {
+
+  const[error, setError] = useState("")
+
+  const login = () => {
+    axios
+    .post(`${BASE_URL}/user/login`, form)
+    .then((res) => {
+      console.log(res);
+      setError("")
+    })
+    .catch((err) => {
+      console.log(err.response.data.message);
+      setError(err.response.data.message)
+    })
+  }
 
   const navigate = useNavigate()
 
@@ -28,12 +45,15 @@ const LoginForm = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    console.log(form);
+    login()
   }
 
   return (
     <InputContainer>
       <form onSubmit={onSubmitForm}>
+
+        <CustomFormHelperText>{error.length > 0 && error}</CustomFormHelperText>
+
         <TextField
           type='email'
           label="Email"
@@ -43,7 +63,7 @@ const LoginForm = () => {
           onChange={onChange("email")}
           required
           fullWidth
-          margin='none'
+          margin='dense'
         />
 
         <FormControl
@@ -75,7 +95,7 @@ const LoginForm = () => {
             label="Senha"
           />
         </FormControl>
-
+        
         <CustomButtonLogin
           type={"submit"}
           variant='contained'
@@ -83,6 +103,7 @@ const LoginForm = () => {
         >Login</CustomButtonLogin>
 
       </form>
+
 
       <CustomButton
         variant='outlined'
