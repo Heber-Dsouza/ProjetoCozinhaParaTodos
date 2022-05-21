@@ -14,9 +14,10 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { InputContainer, CustomButton, CustomButtonLogin, CustomFormHelperText, TermsLink } from './styled'
 import Checkbox from '@mui/material/Checkbox'
-import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText'
 import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel';
+
 
 const SignupForm = () => {
 
@@ -149,12 +150,9 @@ const SignupForm = () => {
           <CustomFormHelperText>{errorPassword.password && errorPassword.messagePassword}</CustomFormHelperText>
         </FormControl>
 
-        <FormControl >
-          <FormControlLabel 
+          <FormControlLabel
             control={<Checkbox required />} 
-            label={<p>Declaro que li e que concordo com os <TermsLink 
-            onClick={() => goToTermsPage(navigate)}>termos de uso.</TermsLink></p>} />
-        </FormControl>
+            label={<TermsLink>Declaro que li e que concordo com os <span onClick={() => goToTermsPage(navigate)}>termos de uso.</span></TermsLink>} />
 
         <CustomButtonLogin
           type={"submit"}
