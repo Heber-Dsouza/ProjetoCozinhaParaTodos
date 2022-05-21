@@ -14,8 +14,6 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { InputContainer, CustomButton, CustomButtonLogin, CustomFormHelperText, TermsLink } from './styled'
 import Checkbox from '@mui/material/Checkbox'
-import FormHelperText from '@mui/material/FormHelperText'
-import FormGroup from '@mui/material/FormGroup'
 import FormControlLabel from '@mui/material/FormControlLabel';
 
 
@@ -23,7 +21,7 @@ const SignupForm = () => {
 
   const navigate = useNavigate()
 
-  const [form, onChange] = useForm({ email: "", password: "" })
+  const [form, onChange] = useForm({ name: "", email: "", password: "" })
   const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -54,11 +52,24 @@ const SignupForm = () => {
       setErrorEmail({ ...errorEmail, email: false, messageEmail: "" })
     }
 
+    console.log(form);
   }
 
   return (
     <InputContainer>
       <form onSubmit={onSubmitForm}>
+        <TextField
+          type='text'
+          label="Nome de Usuário"
+          variant="outlined"
+          name={"name"}
+          value={form.name}
+          onChange={onChange("name")}
+          required
+          fullWidth
+          margin='dense'
+        />
+
         <TextField
           type='email'
           label="Email"
@@ -68,7 +79,7 @@ const SignupForm = () => {
           onChange={onChange("email")}
           required
           fullWidth
-          margin='none'
+          margin='dense'
         />
 
         <TextField
@@ -82,7 +93,7 @@ const SignupForm = () => {
           onChange={onChangeConfirm("confirmEmail")}
           required
           fullWidth
-          margin='normal'
+          margin='dense'
         />
 
         <FormControl
