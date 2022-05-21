@@ -33,7 +33,7 @@ const LoginForm = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    login(form, clear, setError)
+    login(form, clear, setError, navigate)
     console.log(form);
   }
 
