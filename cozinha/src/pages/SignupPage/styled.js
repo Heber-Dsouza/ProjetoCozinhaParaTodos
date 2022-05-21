@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { Button } from '@mui/material'
 import { FormHelperText } from '@mui/material';
 
-
 export const Welcome = styled.h1`
   margin: 0;
   font-size: 25px;
@@ -40,4 +39,10 @@ export const CustomButtonLogin = styled(Button)`
 `
 export const CustomFormHelperText = styled(FormHelperText)`
   color: red;
+`
+export const TermsLink = styled.span`
+  text-decoration: underline;
+    :hover{
+      color: purple
+    }
 `

@@ -8,7 +8,7 @@ import { ScreenContainer, SlideImg, Welcome } from './styled'
 const SignupPage = () => {
   return (
     <ScreenContainer>
-      <Welcome>Cadastre-se. É grátis!</Welcome>
+      {/* <Welcome>Cadastre-se. É grátis!</Welcome> */}
       <SlideImg src={slideOne} />
       <SignupForm />
     </ScreenContainer>

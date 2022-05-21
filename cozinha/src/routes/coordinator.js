@@ -17,3 +17,7 @@ export const goToRecipeDetailPage = (navigate, id) => {
 export const goToAddRecipesPage = (navigate) => {
   navigate('/adicionar-receita')
 }
+
+export const goToTermsPage = (navigate) => {
+  navigate('/cadastrar/termos')
+}

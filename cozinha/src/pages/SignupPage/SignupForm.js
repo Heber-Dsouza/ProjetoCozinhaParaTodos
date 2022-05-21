@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 import useForm from "../../hooks/useForm"
-import { goToLoginPage } from '../../routes/coordinator';
+import { goToLoginPage, goToTermsPage } from '../../routes/coordinator';
 
 import { TextField } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -12,7 +12,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { InputContainer, CustomButton, CustomButtonLogin, CustomFormHelperText } from './styled'
+import { InputContainer, CustomButton, CustomButtonLogin, CustomFormHelperText, TermsLink } from './styled'
+import Checkbox from '@mui/material/Checkbox'
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormHelperText from '@mui/material/FormHelperText'
+import FormGroup from '@mui/material/FormGroup'
 
 const SignupForm = () => {
 
@@ -143,6 +147,13 @@ const SignupForm = () => {
 
           />
           <CustomFormHelperText>{errorPassword.password && errorPassword.messagePassword}</CustomFormHelperText>
+        </FormControl>
+
+        <FormControl >
+          <FormControlLabel 
+            control={<Checkbox required />} 
+            label={<p>Declaro que li e que concordo com os <TermsLink 
+            onClick={() => goToTermsPage(navigate)}>termos de uso.</TermsLink></p>} />
         </FormControl>
 
         <CustomButtonLogin

@@ -9,6 +9,7 @@ import AddRecipesPage from "../pages/AddRecipesPage/AddRecipesPage"
 import ErrorPage from "../pages/ErrorPage/ErrorPage"
 
 import Header from '../components/Header/Header'
+import TermsPage from '../pages/TermsPage/TermsPage'
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
 
         <Route path='/detalhe/:id' element={<RecipeDetailPage />} />
         <Route path='/adicionar-receita' element={<AddRecipesPage />} />
+        <Route path='/cadastrar/termos' element={<TermsPage />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
