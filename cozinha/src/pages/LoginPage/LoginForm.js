@@ -25,18 +25,18 @@ const LoginForm = () => {
     axios
     .post(`${BASE_URL}/user/login`, form)
     .then((res) => {
-      console.log(res);
+      localStorage.setItem("token", res.data.token)
+      clear()
       setError("")
     })
     .catch((err) => {
-      console.log(err.response.data.message);
       setError(err.response.data.message)
     })
   }
 
   const navigate = useNavigate()
 
-  const [form, onChange] = useForm({ email: "", password: "" })
+  const [form, onChange, clear] = useForm({ email: "", password: "" })
   const [showPassword, setShowPassword] = useState(false)
 
   const handleClickShowPassword = () => {
@@ -75,7 +75,7 @@ const LoginForm = () => {
         >
           <InputLabel htmlFor="outlined-adornment-password" >Senha</InputLabel>
           <OutlinedInput
-            defaultValue={form.password}
+            value={form.password}
             onChange={onChange("password")}
             required
             id="outlined-adornment-password"
