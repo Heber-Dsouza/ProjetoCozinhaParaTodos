@@ -5,7 +5,7 @@ import useForm from "../../hooks/useForm"
 import { goToSignupPage } from '../../routes/coordinator';
 
 import { TextField } from '@mui/material';
-import { Button } from '@mui/material'
+// import { Button } from '@mui/material'
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -40,7 +40,7 @@ const LoginForm = () => {
           variant="outlined"
           name={"email"}
           value={form.email}
-          onChange={onChange}
+          onChange={onChange("email")}
           required
           fullWidth
           margin='none'
@@ -48,14 +48,16 @@ const LoginForm = () => {
 
         <FormControl
           fullWidth
-          required
           variant="outlined"
           margin='dense'
-          value={form.password}
-          onChange={onChange}
+
+          
         >
-          <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-password" >Senha</InputLabel>
           <OutlinedInput
+            defaultValue={form.password}
+            onChange={onChange("password")}
+            required
             id="outlined-adornment-password"
             type={showPassword ? 'text' : 'password'}
 
