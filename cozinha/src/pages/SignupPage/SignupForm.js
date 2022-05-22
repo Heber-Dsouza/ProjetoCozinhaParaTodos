@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 import useForm from "../../hooks/useForm"
 import { Signup } from '../../services/user';
 import { goToLoginPage, goToTermsPage } from '../../routes/coordinator';
+import { GlobalStateContext } from '../../global/context/GlobalStateContext';
 
 import { TextField } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
@@ -21,6 +22,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 const SignupForm = () => {
 
   const navigate = useNavigate()
+
+  const { setRightButton } = useContext(GlobalStateContext)
 
   const [form, onChange, clear] = useForm({ name: "", email: "", password: "" })
   const [showPassword, setShowPassword] = useState(false)
@@ -42,7 +45,7 @@ const SignupForm = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    Signup(form, clear, clearConfim, setGeneralError, navigate)
+    Signup(form, clear, clearConfim, setGeneralError, navigate, setRightButton)
 
     if (form.password !== formConfirm.confirmPassword) {
       setErrorPassword({ ...errorPassword, password: true, messagePassword: "Dados incorretos. Verifique sua senha." })

@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import useForm from "../../hooks/useForm"
 import { goToSignupPage } from '../../routes/coordinator';
+import { GlobalStateContext } from '../../global/context/GlobalStateContext';
 
 import { TextField } from '@mui/material';
 // import { Button } from '@mui/material'
@@ -16,15 +17,14 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { InputContainer, CustomButton, CustomButtonLogin, CustomFormHelperText } from './styled'
 
 import {Login} from "../../services/user"
-import { GlobalStateContext } from '../../global/context/GlobalStateContext';
 
 const LoginForm = () => {
+
+  const navigate = useNavigate()
 
   const { setRightButton } = useContext(GlobalStateContext)
 
   const [error, setError] = useState("")
-
-  const navigate = useNavigate()
 
   const [form, onChange, clear] = useForm({ email: "", password: "" })
   const [showPassword, setShowPassword] = useState(false)

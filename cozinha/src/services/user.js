@@ -17,7 +17,7 @@ export const Login = (body, clear, setError, navigate, setRightButton) => {
     })
 }
 
-export const Signup = (body, clear, clearConfim, setError, navigate) => {
+export const Signup = (body, clear, clearConfim, setError, navigate, setRightButton) => {
   axios
   .post(`${BASE_URL}/user/signup`, body)
   .then((res) => {
@@ -26,6 +26,7 @@ export const Signup = (body, clear, clearConfim, setError, navigate) => {
     clearConfim()
     setError("")
     goToRecipeListPage(navigate)
+    setRightButton("Logout")
   })
   .catch((err) => {
     setError(err.response.data.message)
