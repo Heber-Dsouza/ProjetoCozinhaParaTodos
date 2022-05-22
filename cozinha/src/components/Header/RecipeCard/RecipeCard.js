@@ -6,19 +6,20 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
-const RecipeCard = () => {
+const RecipeCard = (props) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345 }} onClick={props.onClick} >
       <CardActionArea>
         <CardMedia
           component="img"
           height="240"
-          image="https://picsum.photos/200/300"
-          alt="green iguana"
+          image={props.image}
+          alt={props.title}
+          title={props.title}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" align='center'>
-            Lizard
+            {props.title.toUpperCase()}
           </Typography>
         </CardContent>
       </CardActionArea>
