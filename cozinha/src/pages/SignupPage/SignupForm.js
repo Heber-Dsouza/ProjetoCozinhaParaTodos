@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 import useForm from "../../hooks/useForm"
+import { Signup } from '../../services/user';
 import { goToLoginPage, goToTermsPage } from '../../routes/coordinator';
 
 import { TextField } from '@mui/material';
@@ -21,13 +22,13 @@ const SignupForm = () => {
 
   const navigate = useNavigate()
 
-  const [form, onChange] = useForm({ name: "", email: "", password: "" })
+  const [form, onChange, clear] = useForm({ name: "", email: "", password: "" })
   const [showPassword, setShowPassword] = useState(false)
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   }
 
-  const [formConfirm, onChangeConfirm] = useForm({confirmEmail: "", confirmPassword: ""})
+  const [formConfirm, onChangeConfirm, clearConfim] = useForm({confirmEmail: "", confirmPassword: ""})
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const handleClickShowConfirmPassword = () => {
     setShowConfirmPassword(!showConfirmPassword);
@@ -36,9 +37,12 @@ const SignupForm = () => {
   const [errorEmail, setErrorEmail] = useState({email: false, messageEmail: ""})
   const [errorPassword, setErrorPassword] = useState({password: false, messagePassword: ""})
 
+  const [generalError, setGeneralError] = useState("")
+
 
   const onSubmitForm = (event) => {
     event.preventDefault()
+    Signup(form, clear, clearConfim, setGeneralError, navigate)
 
     if (form.password !== formConfirm.confirmPassword) {
       setErrorPassword({ ...errorPassword, password: true, messagePassword: "Dados incorretos. Verifique sua senha." })
@@ -52,12 +56,14 @@ const SignupForm = () => {
       setErrorEmail({ ...errorEmail, email: false, messageEmail: "" })
     }
 
-    console.log(form);
   }
 
   return (
     <InputContainer>
       <form onSubmit={onSubmitForm}>
+
+        <CustomFormHelperText>{generalError.length > 0 && generalError}</CustomFormHelperText>
+
         <TextField
           type='text'
           label="Nome de Usuário"

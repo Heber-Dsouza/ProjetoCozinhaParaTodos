@@ -15,7 +15,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { InputContainer, CustomButton, CustomButtonLogin, CustomFormHelperText } from './styled'
 
-import {login} from "../../services/user"
+import {Login} from "../../services/user"
 
 const LoginForm = () => {
 
@@ -33,7 +33,7 @@ const LoginForm = () => {
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    login(form, clear, setError, navigate)
+    Login(form, clear, setError, navigate)
     console.log(form);
   }
 
