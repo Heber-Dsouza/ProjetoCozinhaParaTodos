@@ -6,8 +6,6 @@ const GlobalState = (props) => {
   const token = localStorage.getItem("token") //como isso será ativado?
   const [rightButton, setRightButton] = useState(token ? "Logout" : "Login")
 
-  console.log(token);
-
   return (
     <GlobalStateContext.Provider value={{rightButton, setRightButton, token}}>
       {props.children}
