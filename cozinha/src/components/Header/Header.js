@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 
 import AppBar from '@mui/material/AppBar'
@@ -11,6 +11,23 @@ const Header = () => {
 
   const navigate = useNavigate()
 
+  const token = localStorage.getItem("token")
+  const [rightButton, setRightButton] = useState(token ? "Logout" : "Login")
+
+  const logout = () => {
+    localStorage.removeItem("token")
+  }
+
+  const rightButtonAction = () => {
+    if(token){
+      logout()
+      setRightButton("Login")
+      goToLoginPage(navigate) //depois trocar para página inicial
+    } else {
+      goToLoginPage(navigate) //depois trocar para página inicial
+    }
+  }
+
   return (
       <AppBar position="static">
         <StyledToolbar>
@@ -18,7 +35,7 @@ const Header = () => {
           <LogoButton color="inherit" onClick={() => goToRecipeListPage(navigate)} >
             <LogoImg src={Logo} alt="" /> Cozinha para Todos
           </LogoButton>
-          <Button color="inherit" onClick={() => goToLoginPage(navigate)} >Login</Button>
+          <Button color="inherit" onClick={rightButtonAction} >{rightButton}</Button>
         </StyledToolbar>
       </AppBar>
   );
