@@ -3,11 +3,14 @@ import { ThemeProvider } from '@mui/material/styles'
 
 import theme from './constants/theme'
 import Router from './routes/Router'
+import GlobalState from './global/GlobalState'
 
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Router />
+      <GlobalState>
+        <Router />
+      </GlobalState>
     </ThemeProvider>
   )
 }

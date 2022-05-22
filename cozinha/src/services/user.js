@@ -2,8 +2,7 @@ import axios from "axios"
 import { BASE_URL } from "../constants/urls"
 import { goToRecipeListPage } from "../routes/coordinator"
 
-
-export const Login = (body, clear, setError, navigate) => {
+export const Login = (body, clear, setError, navigate, setRightButton) => {
   axios
     .post(`${BASE_URL}/user/login`, body)
     .then((res) => {
@@ -11,6 +10,7 @@ export const Login = (body, clear, setError, navigate) => {
       clear()
       setError("")
       goToRecipeListPage(navigate)
+      setRightButton("Logout")
     })
     .catch((err) => {
       setError(err.response.data.message)
