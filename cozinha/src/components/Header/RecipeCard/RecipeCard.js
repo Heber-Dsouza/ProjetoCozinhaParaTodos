@@ -8,7 +8,7 @@ import { CardActionArea } from '@mui/material';
 
 const RecipeCard = (props) => {
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={props.onClick} >
+    <Card sx={{ maxWidth: 445 }} onClick={props.onClick} >
       <CardActionArea>
         <CardMedia
           component="img"
@@ -19,7 +19,7 @@ const RecipeCard = (props) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" align='center'>
-            {props.title.toUpperCase()}
+            {props.title}
           </Typography>
         </CardContent>
       </CardActionArea>
