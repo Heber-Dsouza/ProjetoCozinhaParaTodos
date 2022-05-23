@@ -10,7 +10,7 @@ import AddIcon from '@mui/icons-material/Add'
 
 import RecipeCard from '../../components/Header/RecipeCard/RecipeCard'
 import useRequestData from '../../hooks/useRequestData';
-import { goToAddRecipesPage } from '../../routes/coordinator';
+import { goToAddRecipesPage, goToRecipeDetailPage } from '../../routes/coordinator';
 
 
 const RecipeListPage = () => {
@@ -19,8 +19,8 @@ const RecipeListPage = () => {
 
   const recipes = useRequestData([], `${BASE_URL}/recipe/feed`)
 
-  const onClickCard = () => {
-    
+  const onClickCard = (id) => {
+    goToRecipeDetailPage(navigate, id)
   }
 
   const recipesList = recipes && recipes.map((recipes) => {
@@ -30,7 +30,7 @@ const RecipeListPage = () => {
           key={recipes.recipe_id}
           image={recipes.image} 
           title={recipes.title}
-          onClick={onClickCard}
+          onClick={() => onClickCard(recipes.recipe_id)}
         />
       </Grid>
     )
