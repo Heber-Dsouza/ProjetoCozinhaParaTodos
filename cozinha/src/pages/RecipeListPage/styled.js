@@ -9,3 +9,10 @@ export const AddRecipeButton = styled(Fab)`
   bottom: 20px;
   z-index: 3;
 `
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 3.5% 2%;
+  justify-content: center;
+`
