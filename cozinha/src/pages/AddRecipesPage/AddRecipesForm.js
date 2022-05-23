@@ -1,52 +1,30 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import useForm from "../../hooks/useForm"
-import axios from 'axios';
 
-import { CustomFormHelperText } from "./styled"
+import {createRecipe} from "../../services/recipes"
+import { CustomFormHelperText, InputsContainer, AddRecipeFormContainer, CustomButton } from "./styled"
 
 import { TextField } from '@mui/material';
-import { Button } from '@mui/material'
-import { BASE_URL } from '../../constants/urls';
 
 
 
 const AddRecipesForm = () => {
 
-  const navigate = useNavigate()
-
   const [form, onChange, clear] = useForm({title: "", description: "", image: ""})
   const [success, setSuccess] = useState("")
   const [error, setError] = useState("")
 
-  const createRecipe = () => {
-    axios
-    .post(`${BASE_URL}/recipe`, form, {
-      headers: {
-        Authorization: localStorage.getItem("token")
-      }
-    })
-    .then((res) => {
-      console.log(res.data.message);
-      setSuccess(res.data.message)
-      setError("")
-      clear()
-    })
-    .catch((err) => {
-      setError(err.response.message)
-
-    })
-  }
+  
 
   const onSubmitForm = (event) => {
     event.preventDefault()
-    createRecipe()
+    createRecipe(form, clear, setSuccess, setError)
   }
 
   return (
     <form onSubmit={onSubmitForm}>
-      <div>
-        <div>
+      <AddRecipeFormContainer>
+        <InputsContainer>
           <TextField
             type='text'
             label="Título"
@@ -83,15 +61,15 @@ const AddRecipesForm = () => {
             fullWidth
             margin='dense'
           />
-          <Button
+          <CustomButton
             type={"submit"}
             variant='contained'
             fullWidth 
             size='large'
-          >Adicionar Receita</Button>
+          >Adicionar Receita</CustomButton>
           
-        </div>
-      </div>
+        </InputsContainer>
+      </AddRecipeFormContainer>
 
       <CustomFormHelperText >{success.length > 0 && success}</CustomFormHelperText>
       <CustomFormHelperText error >{error.length > 0 && error}</CustomFormHelperText>
