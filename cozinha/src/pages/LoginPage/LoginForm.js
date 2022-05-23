@@ -54,6 +54,7 @@ const LoginForm = () => {
           onChange={onChange("email")}
           required
           fullWidth
+          autoFocus
           margin='dense'
         />
 

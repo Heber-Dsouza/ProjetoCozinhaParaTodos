@@ -76,6 +76,7 @@ const SignupForm = () => {
           onChange={onChange("name")}
           required
           fullWidth
+          autoFocus
           margin='dense'
         />
 
