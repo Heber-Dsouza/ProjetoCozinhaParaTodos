@@ -1,13 +1,17 @@
 import React from 'react'
 import styled from '@emotion/styled';
+import { useNavigate } from 'react-router-dom'
 
 import {BASE_URL} from "../../constants/urls"
 
+import { AddRecipeButton } from "./styled"
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import AddIcon from '@mui/icons-material/Add'
 
 import RecipeCard from '../../components/Header/RecipeCard/RecipeCard'
 import useRequestData from '../../hooks/useRequestData';
+import { goToAddRecipesPage } from '../../routes/coordinator';
 
 const Container = styled.div`
   display: flex;
@@ -23,8 +27,13 @@ const Container = styled.div`
 
 const RecipeListPage = () => {
 
+  const navigate = useNavigate() 
+
   const recipes = useRequestData([], `${BASE_URL}/recipe/feed`)
-  console.log(recipes);
+
+  const onClickCard = () => {
+    
+  }
 
   const recipesList = recipes && recipes.map((recipes) => {
     return (
@@ -33,7 +42,7 @@ const RecipeListPage = () => {
           key={recipes.recipe_id}
           image={recipes.image} 
           title={recipes.title}
-          onClick={()=> null}
+          onClick={onClickCard}
         />
       </Grid>
     )
@@ -43,13 +52,15 @@ const RecipeListPage = () => {
     <Container>
 
 
-      <Box sx={{ width: '95%' }} justifyItems={"center"}>
+      <Box sx={{ width: '94%' }} justifyItems={"center"}>
         <Grid container spacing={{ xs: 2, md: 4 }} justifyContent={"center"} columns={{ xs: 3, sm: 8, md: 15 }}>         
           {recipesList}
         </Grid>
       </Box>
 
-
+        <AddRecipeButton color="primary" aria-label="add" onClick={() => goToAddRecipesPage(navigate)}>
+          <AddIcon />
+        </AddRecipeButton>
 
     </Container>
   )
