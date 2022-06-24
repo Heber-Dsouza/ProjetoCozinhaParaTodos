@@ -1,2 +1,2 @@
-# ProjetoCozinhaParaLeigos
+# ProjetoCozinhaParaTodos
 Criando um site de receitas!
